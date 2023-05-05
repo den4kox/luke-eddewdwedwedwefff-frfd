@@ -1,0 +1,27 @@
+.Search {
+  display: flex;
+  height: 100%;
+}
+
+.header {
+  text-align: "center";
+  color: #fff;
+  height: 64px;
+  padding: 0 50px;
+  line-height: 64px;
+  background-color: green;
+}
+
+.content {
+  overflow-y: auto;
+  text-align: center;
+  min-height: 120px;
+  line-height: 120px;
+  color: #fff;
+}
+
+.footer {
+  text-align: center;
+  color: #fff;
+  background-color: green;
+}
