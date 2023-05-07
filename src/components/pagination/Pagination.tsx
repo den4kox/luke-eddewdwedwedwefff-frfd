@@ -15,6 +15,7 @@ export const Pagination: React.FC = observer(() => {
 
   return (
     <PaginationAnt
+      disabled={store.isLoading}
       onChange={handleChange}
       current={store.filter.page}
       defaultCurrent={store.filter.page}

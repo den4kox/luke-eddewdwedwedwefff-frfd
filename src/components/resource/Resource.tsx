@@ -16,6 +16,7 @@ export const Resource: React.FC = observer(() => {
       defaultValue={store.filter.resource}
       buttonStyle="solid"
       onChange={handleChange}
+      disabled={store.isLoading}
     >
       {Object.entries(EResources).map(([key, value]) => {
         return (

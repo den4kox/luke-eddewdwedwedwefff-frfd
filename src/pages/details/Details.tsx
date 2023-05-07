@@ -7,7 +7,7 @@ import { ResourceData } from "state/types";
 import { cachedFetch } from "utils/fetch";
 import { baseUrl } from "const/url";
 import { isFilms } from "utils/guards";
-import { LeftCircleFilled, HomeFilled } from "@ant-design/icons";
+import { LeftCircleTwoTone, HomeTwoTone } from "@ant-design/icons";
 
 const { Header, Content } = Layout;
 
@@ -53,13 +53,13 @@ export const Details: React.FC = () => {
           onClick={goBack}
           shape="circle"
           style={{ position: "absolute", left: 20 }}
-          icon={<LeftCircleFilled />}
+          icon={<LeftCircleTwoTone />}
         />
         <Button
           onClick={goMainPage}
           shape="circle"
           style={{ position: "absolute", right: 20 }}
-          icon={<HomeFilled />}
+          icon={<HomeTwoTone />}
         />
         {title} :: {type}
       </Header>
