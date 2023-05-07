@@ -13,14 +13,19 @@ const { Header, Content } = Layout;
 
 export const Details: React.FC = () => {
   const [data, setData] = React.useState<ResourceData | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
   const { type, id } = useParams();
   const navigate = useNavigate();
 
   React.useEffect(() => {
     if (type && id) {
-      cachedFetch<ResourceData>(`${baseUrl}/${type}/${id}`).then((data) => {
-        setData(data);
-      });
+      cachedFetch<ResourceData>(`${baseUrl}/${type}/${id}`)
+        .then((data) => {
+          setData(data);
+        })
+        .catch(() => {
+          setError("Page not found...");
+        });
     }
   }, [type, id]);
 
@@ -59,7 +64,11 @@ export const Details: React.FC = () => {
         {title} :: {type}
       </Header>
       <Content className={cn.content}>
-        <Table data={data} />
+        {error ? (
+          <div className={cn.error}>{error}</div>
+        ) : (
+          <Table data={data} />
+        )}
       </Content>
     </Layout>
   );

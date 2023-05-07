@@ -23,3 +23,10 @@
   line-height: 120px;
   color: #fff;
 }
+
+.error {
+  color: red;
+  height: 100%;
+  width: 100%;
+  font-size: 24px;
+}

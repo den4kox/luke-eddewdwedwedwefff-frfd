@@ -1,7 +1,7 @@
 import React from "react";
 
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import Router from "./Router";
 import "./style.css";
 
 import { withStoreProvider, Store } from "./state";
@@ -21,6 +21,6 @@ const store = new Store({
   resource: resource,
 });
 
-const appWithStore = withStoreProvider(store, App);
+const appWithStore = withStoreProvider(store, Router);
 
 root.render(<React.StrictMode>{appWithStore}</React.StrictMode>);
