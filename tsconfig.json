@@ -1,11 +1,12 @@
 {
     "include": [
         "./src/**/*",
-        "src"
     ],
     "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "node",
         "target": "es6",
-        "baseUrl": "./src",
+        "baseUrl": "src",
         "strict": true,
         "esModuleInterop": true,
         "lib": [

@@ -1,38 +1,64 @@
-import { configure, makeObservable, computed } from "mobx";
+import {
+  configure,
+  makeObservable,
+  runInAction,
+  action,
+  observable,
+} from "mobx";
 
 import { Disposable, DisposeBag } from "./DisposableBag";
 
-import { createPeopleStore, IPeopleStore } from "./people";
 import { createFilterStore, IFilterStore } from "./filter";
 
-import { IStore } from "./types";
+import { IStore, ResourcesData, ResponseListBase, StoreProps } from "./types";
 import { handleFilterChange } from "./reactions/handleFilterChange";
+import { baseUrl } from "const/url";
+import { cachedFetch } from "utils/fetch";
+
 configure({ enforceActions: "always" });
 
 export class Store implements Disposable, IStore {
   public disposeBag: DisposeBag;
-  public people: IPeopleStore;
   public filter: IFilterStore;
+  public total = 0;
+  public data: ResourcesData = [];
+  public isLoading = false;
 
-  public constructor() {
-    console.log("STORE INIT");
-
+  public constructor(props: StoreProps) {
     makeObservable(this, {
-      total: computed
+      total: observable,
+      data: observable,
+      isLoading: observable,
+      load: action,
     });
 
     this.disposeBag = new DisposeBag();
-    this.filter = createFilterStore(this);
-    this.people = createPeopleStore(this);
+    this.filter = createFilterStore(props);
 
     this.disposeBag.addDisposables([handleFilterChange(this)]);
+    this.load();
   }
 
   public dispose(): void {
     this.disposeBag.dispose();
   }
 
-  public get total(): number {
-    return this.people.total;
+  public load() {
+    const url = new URL(`${baseUrl}/${this.filter.resource}`);
+    if (this.filter.text) {
+      url.searchParams.append("search", this.filter.text);
+    }
+
+    url.searchParams.append("page", String(this.filter.page));
+    this.isLoading = true;
+    cachedFetch<ResponseListBase>(url.toString()).then((data) => {
+      if (data.results) {
+        runInAction(() => {
+          this.data = data.results;
+          this.total = data.count;
+          this.isLoading = false;
+        });
+      }
+    });
   }
 }

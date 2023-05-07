@@ -1,19 +1,19 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Search } from "./pages/search";
 import { Details } from "./pages/details";
+import { UrlResolver } from "./components/urlResolver";
+import { ScrollToTop } from "./components/scrollTop";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Search />,
-    errorElement: <Search />
-  },
-  {
-    path: "/:type/:id",
-    element: <Details />
-  }
-]);
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <UrlResolver />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Search />} />
+        <Route path="/:type/:id" element={<Details />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }

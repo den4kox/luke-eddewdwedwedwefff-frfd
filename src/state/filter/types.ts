@@ -1,10 +1,13 @@
-import { RootStore } from "../types";
+import { StoreProps } from "../types";
+import { EResources } from "types";
 
 export interface IFilterStore {
   text: string;
   page: number;
-  setText: (text: string) => void;
-  setPage: (page: number) => void;
+  resource: EResources;
+  setResource: (resource: EResources | null) => void;
+  setText: (text: string | null) => void;
+  setPage: (page: number | null) => void;
 }
 
-export type FilterStoreProps = RootStore;
+export type FilterStoreProps = StoreProps;

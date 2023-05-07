@@ -4,12 +4,15 @@
 }
 
 .header {
-  text-align: "center";
+  text-align: center;
   color: #fff;
-  height: 64px;
-  padding: 0 50px;
-  line-height: 64px;
-  background-color: green;
+  height: auto;
+  padding: 12px 50px;
+  line-height: 32px;
+}
+
+.header > span:first-of-type {
+  margin-bottom: 6px;
 }
 
 .content {
@@ -23,5 +26,4 @@
 .footer {
   text-align: center;
   color: #fff;
-  background-color: green;
 }

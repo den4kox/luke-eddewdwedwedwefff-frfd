@@ -1,2 +1,2 @@
-export { IFilterStore } from "./types";
+export type { IFilterStore } from "./types";
 export { createFilterStore } from "./Filter";

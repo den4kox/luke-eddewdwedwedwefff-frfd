@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly Breadcrumbs: string;
+  readonly Table: string;
 };
 
 export default styles;

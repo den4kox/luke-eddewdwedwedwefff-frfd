@@ -1,3 +1,25 @@
 .Details {
   display: inline;
 }
+
+.header {
+  text-align: center;
+  color: #fff;
+  height: auto;
+  padding: 12px 50px;
+  line-height: 32px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+.content {
+  margin-top: 56px;
+  padding: 0 20px;
+  overflow-y: auto;
+  text-align: center;
+  min-height: 120px;
+  line-height: 120px;
+  color: #fff;
+}
