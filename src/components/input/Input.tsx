@@ -20,6 +20,7 @@ export const Input: React.FC = observer(() => {
 
   return (
     <InputAnt
+      defaultValue={store.filter.text}
       allowClear
       onPressEnter={handleBlur}
       onBlur={handleBlur}
